@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartu Profil - Damirsa Tenolado</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #fff4e5; margin: 0; padding: 16px; }
+    .kartu {
+      max-width: 360px; margin: 24px auto; background: #ffffff;
+      border-radius: 16px; padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); text-align: center;
+    }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: #e65100; color: #ffffff;
+      font-size: 40px; line-height: 96px; margin: 0 auto 12px;
+    }
+    h1 { margin: 0 0 4px; font-size: 22px; }
+    .jurusan { color: #666666; margin: 0 0 16px; }
+    ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+    li { padding: 6px 0; border-top: 1px solid #eeeeee; }
+    button {
+      margin-top: 16px; padding: 8px 16px; font-size: 16px;
+      border: none; border-radius: 8px; background: #e65100; color: #ffffff;
+    }
+    .tautan { margin-top: 16px; font-size: 14px; }
+    .tautan a { color: #e65100; margin: 0 6px; }
+  </style>
+</head>
+<body>
+  <section class="kartu">
+    <div class="avatar">D</div>
+    <h1>Damirsa Tenolado</h1>
+    <p class="jurusan">Teknologi Rekayasa Multimedia, Semester 5</p>
+    <ul id="detail">
+      <li>Tanggal lahir: 9 Juni 2006</li>
+      <li>Jenis kelamin: Laki-laki</li>
+      <li>Kampus: Politeknik Prasetiya Mandiri</li>
+    </ul>
+    <button id="tombol">Sembunyikan detail</button>
+    <p class="tautan">
+      Tugas lain:
+      <a href="tugas-2-fungsi.html">Fungsi</a>
+      <a href="tugas-3-daftar-target.html">Daftar Target</a>
+    </p>
+  </section>
+
+  <script>
+    const detail = document.getElementById("detail");
+    const tombol = document.getElementById("tombol");
+    let tampil = true;
+
+    tombol.addEventListener("click", () => {
+      tampil = !tampil;
+      detail.style.display = tampil ? "block" : "none";
+      tombol.textContent = tampil ? "Sembunyikan detail" : "Tampilkan detail";
+    });
+  </script>
+</body>
+</html>

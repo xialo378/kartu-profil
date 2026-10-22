@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fungsi dan Validasi</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 16px; }
+    pre { background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Fungsi dan Validasi</h1>
+  <pre id="keluaran"></pre>
+
+  <script>
+    const keluaran = document.getElementById("keluaran");
+    function cetak(teks) {
+      console.log(teks);
+      keluaran.textContent += teks + "\n";
+    }
+
+    // Ukuran akhir = ukuran asli x skala
+    function ukuranAkhir(ukuranAsli, skala) {
+      return ukuranAsli * skala;
+    }
+
+    // Kategori berdasarkan ukuran berkas (MB)
+    function kategoriUkuran(mb) {
+      if (mb <= 2) {
+        return "ringan";
+      } else if (mb <= 5) {
+        return "sedang";
+      } else {
+        return "terlalu berat";
+      }
+    }
+
+    // TULIS DUGAANMU DULU di komentar ini sebelum menjalankan:
+    // kategoriUkuran(2)   dugaan: ...
+    // kategoriUkuran(5)   dugaan: ...
+    // kategoriUkuran(5.1) dugaan: ...
+    // ukuranAkhir(80, 0.004) dugaan: ...
+
+    cetak("ukuranAkhir(80, 0.004) = " + ukuranAkhir(80, 0.004));
+    cetak("kategoriUkuran(0.6) = " + kategoriUkuran(0.6));
+    cetak("kategoriUkuran(2) = " + kategoriUkuran(2));
+    cetak("kategoriUkuran(2.1) = " + kategoriUkuran(2.1));
+    cetak("kategoriUkuran(5) = " + kategoriUkuran(5));
+    cetak("kategoriUkuran(8.1) = " + kategoriUkuran(8.1));
+  </script>
+</body>
+</html>

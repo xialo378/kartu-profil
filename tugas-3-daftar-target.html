@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Target</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 24px auto; padding: 0 16px; }
+    button { font-size: 16px; padding: 8px 14px; margin: 4px 4px 4px 0; }
+    input { font-size: 16px; padding: 8px; width: 60%; }
+    .pesan { margin: 8px 0; min-height: 1.4em; }
+    .salah { color: #b00020; }
+    .benar { color: #0a7a2f; }
+    li { padding: 4px 0; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+  <h1>Daftar Target AR</h1>
+  <input id="nama" placeholder="Nama target, mis. Poster Pameran" />
+  <button id="simpan">Simpan</button>
+  <p id="pesan" class="pesan"></p>
+  <p><strong id="jumlah">0 target</strong></p>
+  <ul id="daftar"></ul>
+
+  <script>
+    const kolomNama = document.getElementById("nama");
+    const pesan = document.getElementById("pesan");
+    const daftar = document.getElementById("daftar");
+    const tampilanJumlah = document.getElementById("jumlah");
+    const targetTersimpan = [];
+
+    function tampilkanPesan(teks, benar) {
+      pesan.textContent = teks;
+      pesan.className = "pesan " + (benar ? "benar" : "salah");
+    }
+
+    // Gambar ulang daftar dari isi array (sumber kebenaran = array)
+    function gambarDaftar() {
+      daftar.textContent = "";
+      targetTersimpan.forEach((nama) => {
+        const li = document.createElement("li");
+        const teks = document.createElement("span");
+        teks.textContent = nama; // textContent, bukan innerHTML
+
+        const tombolHapus = document.createElement("button");
+        tombolHapus.textContent = "Hapus";
+        tombolHapus.addEventListener("click", () => {
+          const posisi = targetTersimpan.indexOf(nama);
+          targetTersimpan.splice(posisi, 1); // hapus dari array
+          gambarDaftar();
+          tampilkanPesan("Target dihapus.", true);
+        });
+
+        li.appendChild(teks);
+        li.appendChild(tombolHapus);
+        daftar.appendChild(li);
+      });
+      tampilanJumlah.textContent = targetTersimpan.length + " target";
+    }
+
+    document.getElementById("simpan").addEventListener("click", () => {
+      const nama = kolomNama.value.trim();
+
+      if (nama === "") {
+        tampilkanPesan("Nama tidak boleh kosong.", false);
+        return;
+      }
+      if (targetTersimpan.includes(nama)) {
+        tampilkanPesan("Nama sudah ada.", false);
+        return;
+      }
+
+      targetTersimpan.push(nama);
+      gambarDaftar();
+      kolomNama.value = "";
+      tampilkanPesan("Tersimpan: " + nama, true);
+    });
+  </script>
+</body>
+</html>
